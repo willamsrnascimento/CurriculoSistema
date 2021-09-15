@@ -1,4 +1,5 @@
-using CurriculoSistema.Data;
+using SistemaCurriculos.Data;
+using SistemaCurriculos.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Rotativa.AspNetCore;
+//susing Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +46,10 @@ namespace CurriculoSistema
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddControllersWithViews();
+
+
+            services.AddScoped<CurriculoService>();
+            services.AddScoped<UsuarioService>();
         }
 
         private void CookiesAuthentication(AuthenticationOptions obj)
@@ -74,13 +79,13 @@ namespace CurriculoSistema
             app.UseRouting();
             app.UseAuthorization();
 
-            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
+            //RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Usuario}/{action=Registro}/{id?}");
+                    pattern: "{controller=Usuario}/{action=Registrar}/{id?}");
             });
         }
     }

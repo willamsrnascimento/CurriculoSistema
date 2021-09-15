@@ -1,0 +1,37 @@
+﻿@model SistemaCurriculos.Models.Usuario;
+
+<h3>Registro de Usuário</h3>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Usuario">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="Email" id="Email" type="email" class="validate" />
+                    <label for="Email">Email</label>
+                    <span asp-validation-for="Email" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="Senha" id="Senha" type="password" class="validate" />
+                    <label for="Senha">Senha</label>
+                    <span asp-validation-for="Senha" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <input asp-action="Registrar" type="submit" value="Registrar" class="btn btn-small green darken-1"/> &nbsp;
+                <a asp-action="Login" asp-controller="Usuario">Já sou registrado</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

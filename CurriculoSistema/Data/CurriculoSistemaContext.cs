@@ -1,12 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CurriculoSistema.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CurriculoSistema.Data.Configuration;
+using SistemaCurriculos.Models;
+using SistemaCurriculos.Data.Configuration;
 
-namespace CurriculoSistema.Data
+namespace SistemaCurriculos.Data
 {
     public class CurriculoSistemaContext : DbContext
     {

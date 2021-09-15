@@ -1,11 +1,7 @@
-﻿using CurriculoSistema.Models;
+﻿using SistemaCurriculos.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CurriculoSistema.Data.Configuration
+namespace SistemaCurriculos.Data.Configuration
 {
     public class CurriculoConfiguration : IEntityTypeConfiguration<Curriculo>
     {

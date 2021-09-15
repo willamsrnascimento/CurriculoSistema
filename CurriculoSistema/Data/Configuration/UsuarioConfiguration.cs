@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CurriculoSistema.Models;
+using SistemaCurriculos.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CurriculoSistema.Data.Configuration
+namespace SistemaCurriculos.Data.Configuration
 {
     public class UsuarioConfiguration : IEntityTypeConfiguration<Usuario>
     {

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CurriculoSistema.Models
+namespace SistemaCurriculos.Models
 {
     public class Usuario
     {
@@ -22,5 +19,18 @@ namespace CurriculoSistema.Models
         public string Senha { get; set; }
         public ICollection<InformacaoLogin> InformacoesLogin { get; set; }
         public ICollection<Curriculo> Curriculos { get; set; }
+
+        public Usuario()
+        {
+        }
+
+        public Usuario(int id, string email, string senha, ICollection<InformacaoLogin> informacoesLogin, ICollection<Curriculo> curriculos)
+        {
+            Id = id;
+            Email = email;
+            Senha = senha;
+            InformacoesLogin = informacoesLogin;
+            Curriculos = curriculos;
+        }
     }
 }
