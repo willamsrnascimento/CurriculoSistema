@@ -24,7 +24,7 @@ namespace SistemaCurriculos.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Registrar()
+        public IActionResult Registrar()
         {
             return View();
         }
@@ -68,7 +68,7 @@ namespace SistemaCurriculos.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -117,6 +117,16 @@ namespace SistemaCurriculos.Controllers
             }
 
             return View(loginViewModel);
+        }
+
+        public IActionResult Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.Session.Clear();
+            }
+
+            return RedirectToAction("Registrar", "Usuario");
         }
     }
 }

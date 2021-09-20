@@ -22,7 +22,7 @@ namespace SistemaCurriculos.Services
             throw new System.NotImplementedException();
         }
 
-        public Task<Usuario> BuscarPorIdAsync(long id)
+        public Task<Usuario> BuscarPorIdAsync(int id)
         {
             throw new System.NotImplementedException();
         }
@@ -38,19 +38,19 @@ namespace SistemaCurriculos.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task ExcluirAsync(long id)
+        public Task ExcluirAsync(int id)
         {
             throw new System.NotImplementedException();
         }
 
         public async Task<Usuario> VerificaDadosLogin(Usuario usuario) 
         {
-            if(! await _context.Usuarios.AsNoTracking().AnyAsync(u => u.Email == usuario.Email && u.Senha == usuario.Senha))
+            if(await _context.Usuarios.AsNoTracking().AnyAsync(u => u.Email == usuario.Email && u.Senha == usuario.Senha))
             {
-                return null;
+                return await _context.Usuarios.Where(u => u.Email == usuario.Email && u.Senha == usuario.Senha).SingleOrDefaultAsync();
             }
 
-            return await _context.Usuarios.Where(u => u.Email == usuario.Email && u.Senha == usuario.Senha).SingleOrDefaultAsync();
+            return null;
         }
     }
 }

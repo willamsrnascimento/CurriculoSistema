@@ -22,7 +22,7 @@ namespace SistemaCurriculos.Services
             throw new System.NotImplementedException();
         }
 
-        public Task<Curriculo> BuscarPorIdAsync(long id)
+        public Task<Curriculo> BuscarPorIdAsync(int id)
         {
             throw new System.NotImplementedException();
         }
@@ -42,7 +42,7 @@ namespace SistemaCurriculos.Services
             throw new System.NotImplementedException();
         }
 
-        public Task ExcluirAsync(long id)
+        public Task ExcluirAsync(int id)
         {
             throw new System.NotImplementedException();
         }

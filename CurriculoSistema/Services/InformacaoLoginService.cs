@@ -22,7 +22,7 @@ namespace SistemaCurriculos.Services
             throw new NotImplementedException();
         }
 
-        public Task<InformacaoLogin> BuscarPorIdAsync(long id)
+        public Task<InformacaoLogin> BuscarPorIdAsync(int id)
         {
             throw new NotImplementedException();
         }
@@ -38,7 +38,7 @@ namespace SistemaCurriculos.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task ExcluirAsync(long id)
+        public Task ExcluirAsync(int id)
         {
             throw new NotImplementedException();
         }

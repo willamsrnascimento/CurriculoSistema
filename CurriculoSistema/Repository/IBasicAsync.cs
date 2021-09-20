@@ -9,8 +9,8 @@ namespace SistemaCurriculos.Repository
     {
         Task CriarAsync(T t);
         Task AtualizarAsync(T t);
-        Task ExcluirAsync(long id);
+        Task ExcluirAsync(int id);
         Task<List<T>> BuscarTodosAsync();
-        Task<T> BuscarPorIdAsync(long id);
+        Task<T> BuscarPorIdAsync(int id);
     }
 }

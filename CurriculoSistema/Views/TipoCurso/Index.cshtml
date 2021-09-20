@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SistemaCurriculos.Models.TipoCurso>
+
+@{
+    ViewData["Title"] = "Tipo de Cursos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+
+<p>Relação de cursos cadastrados</p>
+
+<br />
+<a asp-controller="TipoCurso" asp-action="Criar">Incluir Novo</a>
+
+<br />
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr class="success">
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo)
+            </th>
+            <th>
+                Ações
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (TipoCurso tipoCurso in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(tc => tipoCurso.Tipo)
+                </td>
+                <td>
+                    <a class="btn-floation btn-small blue darken-4 modal-trigger"  asp-action="Editar" asp-route-id="@tipoCurso.Id"><i class="material-icons">edit</i></a>
+                    <a class="btn-floation btn-small red darken-4 modal-trigger" onclick="excluirTipoCursoModal(@tipoCurso.Id)"><i class="material-icons">delete_forever</i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Exclusão de tipo de curso</h4>
+        <p>Deseja excluir este tipo de curso?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close green accent-4 btn">Não</a>
+        <a class="modal-close red accent-4 btn btnConfirmar">Sim</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".modal").modal();
+        });
+
+        function excluirTipoCursoModal(id) {
+            $("#modal1").modal("open");
+
+            $(".btnConfirmar").on("click", function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/TipoCurso/Excluir",
+                    data: { id: id },
+                    success: function () {
+                        alert("Usuário excluído com sucesso!");
+                        location.reload();
+                    }
+                });
+            });
+        }
+    </script>  
+}
