@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-//susing Rotativa.AspNetCore;
+using Rotativa.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +50,7 @@ namespace CurriculoSistema
 
             services.AddScoped<CurriculoService>();
             services.AddScoped<UsuarioService>();
+            services.AddScoped<InformacaoLoginService>();
         }
 
         private void CookiesAuthentication(AuthenticationOptions obj)
@@ -79,7 +80,7 @@ namespace CurriculoSistema
             app.UseRouting();
             app.UseAuthorization();
 
-            //RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
+            RotativaConfiguration.Setup(env.WebRootPath, "Rotativa");
 
             app.UseEndpoints(endpoints =>
             {

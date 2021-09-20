@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SistemaCurriculos.Models;
 using SistemaCurriculos.Services;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,14 @@ namespace Sistemacurriculos.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            List<Curriculo> curriculos = await _curriculoService.BuscarTodosAsync();
+
+            if(curriculos == null)
+            {
+                curriculos = new List<Curriculo>();
+            }
+
+            return View(curriculos);
         }
     }
 }
