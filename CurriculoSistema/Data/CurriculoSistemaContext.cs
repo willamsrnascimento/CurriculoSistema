@@ -12,7 +12,8 @@ namespace SistemaCurriculos.Data
         public DbSet<FormacaoAcademica> FormacoesAcademicas { get; set; }
         public DbSet<Objetivo> Objetivos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
-        
+        public DbSet<InformacaoLogin> InformacoesLogins { get; set; }
+
         public CurriculoSistemaContext(DbContextOptions<CurriculoSistemaContext> dbContextOptions) : base(dbContextOptions)
         {
         }

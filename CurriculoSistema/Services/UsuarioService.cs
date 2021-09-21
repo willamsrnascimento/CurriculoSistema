@@ -52,5 +52,10 @@ namespace SistemaCurriculos.Services
 
             return null;
         }
+
+        public async Task<bool> VerificaUsuarioExiste(string email)
+        {
+            return await _context.Usuarios.AsNoTracking().AnyAsync(u => u.Email == email);
+        }
     }
 }

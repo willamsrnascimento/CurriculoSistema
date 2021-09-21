@@ -11,7 +11,7 @@
 <p>Relação de currículos cadastrados</p>
 
 <br />
-<a href="#">Incluir Novo</a>
+<a asp-action="Criar" asp-controller="Curriculo">Incluir Novo</a>
 
 <br />
 
@@ -34,15 +34,48 @@
                     @Html.DisplayFor(mc => curriculo.Nome)
                 </td>
                 <td>
-                    <a asp-action="Editar" asp-route-id="@curriculo.Id">Editar</a>
-                    <a asp-action="Detalhes" asp-route-id="@curriculo.Id">Detalhes</a>
-                    <a href="#" class="btn-link" data-toggle="modal" data-target="#modalExcluir" onclick="excluirFuncionarioModal(@curriculo.Id, '@curriculo.Nome')">Excluir</a>
+                    <a class="btn-floation btn-small blue darken-4 modal-trigger" asp-action="Editar" asp-route-id="@curriculo.Id"><i class="material-icons">edit</i></a>
+                    <a class="btn-floation btn-small deep-porple darken-4 modal-trigger" asp-action="Detalhe" asp-route-id="@curriculo.Id"><i class="material-icons">info</i></a>
+                    <a class="btn-floation btn-small red darken-4 modal-trigger" onclick="excluirCurriculoModal(@curriculo.Id)"><i class="material-icons">delete_forever</i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<!--section Scripts{
-    <script src="~/js/funcionario/funcionarioIndexScript.js"></script>
-}}-->
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Exclusão de tipo de curso</h4>
+        <p>Deseja excluir este Currículo?</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close green accent-4 btn">Não</a>
+        <a class="modal-close red accent-4 btn btnConfirmar">Sim</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $(".modal").modal();
+        });
+
+        function excluirCurriculoModal(id) {
+            $("#modal1").modal("open");
+
+            $(".btnConfirmar").on("click", function () {
+                $.ajax({
+                    method: "POST",
+                    url: "/Curriculo/Excluir",
+                    data: { id: id },
+                    success: function () {
+                        alert("Currículo excluído com sucesso!");
+                        location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+}

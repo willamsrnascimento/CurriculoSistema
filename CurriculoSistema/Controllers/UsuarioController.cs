@@ -119,14 +119,25 @@ namespace SistemaCurriculos.Controllers
             return View(loginViewModel);
         }
 
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
             if (User.Identity.IsAuthenticated)
             {
+                await HttpContext.SignOutAsync();
                 HttpContext.Session.Clear();
             }
 
-            return RedirectToAction("Registrar", "Usuario");
+            return RedirectToAction("Login", "Usuario");
+        }
+
+        public async Task<JsonResult> VerificaUsuarioExiste(string email)
+        {
+            if (!await _usuarioService.VerificaUsuarioExiste(email))
+            {
+                return Json(true);
+            }
+
+            return Json("Usuário já cadastrado");
         }
     }
 }

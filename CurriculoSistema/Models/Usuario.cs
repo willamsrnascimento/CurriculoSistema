@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SistemaCurriculos.Models
@@ -11,6 +12,7 @@ namespace SistemaCurriculos.Models
         [StringLength(50, ErrorMessage = "Use menos caractéres")]
         [EmailAddress(ErrorMessage = "E-mail inválido")]
         [DataType(DataType.EmailAddress)]
+        [Remote("VerificaUsuarioExiste", "Usuario")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatório")]

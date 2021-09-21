@@ -1,4 +1,5 @@
-﻿using SistemaCurriculos.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaCurriculos.Data;
 using SistemaCurriculos.Models;
 using SistemaCurriculos.Repository;
 using System;
@@ -41,6 +42,16 @@ namespace SistemaCurriculos.Services
         public Task ExcluirAsync(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<InformacaoLogin>> BuscaInformacaoUsuarioId(int id)
+        {
+            if(await _context.InformacoesLogins.AsNoTracking().AnyAsync(il => il.UsuarioId == id))
+            {
+                return await _context.InformacoesLogins.OrderBy(il => il.Id).Include(il => il.Usuario).Where(il => il.UsuarioId == id).ToListAsync();
+            }
+
+            return null;
         }
     }
 }

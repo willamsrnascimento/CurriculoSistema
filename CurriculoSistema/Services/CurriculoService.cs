@@ -2,6 +2,7 @@
 using SistemaCurriculos.Data;
 using SistemaCurriculos.Models;
 using SistemaCurriculos.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,14 +18,15 @@ namespace SistemaCurriculos.Services
             _context = context;
         }
 
-        public Task AtualizarAsync(Curriculo t)
+        public async Task AtualizarAsync(Curriculo curriculo)
         {
-            throw new System.NotImplementedException();
+            _context.Update(curriculo);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<Curriculo> BuscarPorIdAsync(int id)
+        public async Task<Curriculo> BuscarPorIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Curriculos.Where(t => t.Id == id).FirstOrDefaultAsync();
         }
 
         public async Task<List<Curriculo>> BuscarTodosAsync()
@@ -37,14 +39,24 @@ namespace SistemaCurriculos.Services
             return await _context.Curriculos.OrderBy(c => c.Nome).ToListAsync();
         }
 
-        public Task CriarAsync(Curriculo t)
+        public async Task CriarAsync(Curriculo curriculo)
         {
-            throw new System.NotImplementedException();
+            _context.Add(curriculo);
+            await _context.SaveChangesAsync();
         }
 
-        public Task ExcluirAsync(int id)
+        public async Task ExcluirAsync(int id)
         {
-            throw new System.NotImplementedException();
+            Curriculo curriculo = await _context.Curriculos.FirstOrDefaultAsync(tc => tc.Id == id);
+            try
+            {
+                _context.Remove(curriculo);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
