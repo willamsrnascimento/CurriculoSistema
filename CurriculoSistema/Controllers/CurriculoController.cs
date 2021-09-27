@@ -98,6 +98,22 @@ namespace Sistemacurriculos.Controllers
             return View(curriculo);
         }
 
+        public async Task<IActionResult> Detalhe(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            Curriculo curriculo = await _curriculoService.BuscarPorIdAsync(id.Value);
+
+            if(curriculo == null)
+            {
+                return NotFound();
+            }
+
+            return View(curriculo);
+        }
         public async Task<JsonResult> Excluir(int? id)
         {
             if (id == null)

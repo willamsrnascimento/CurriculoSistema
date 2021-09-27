@@ -12,5 +12,17 @@ namespace SistemaCurriculos.Models
         public string Descricao { get; set; }
         public int CurriculoId { get; set; }
         public Curriculo Curriculo { get; set; }
+
+        public Objetivo()
+        {
+        }
+
+        public Objetivo(int id, string descricao, int curriculoId, Curriculo curriculo)
+        {
+            Id = id;
+            Descricao = descricao;
+            CurriculoId = curriculoId;
+            Curriculo = curriculo;
+        }
     }
 }
