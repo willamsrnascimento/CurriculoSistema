@@ -1,6 +1,9 @@
 ﻿@model SistemaCurriculos.Models.Curriculo;
+<div class="col s2">
+    <h5>Currículo @Model.Nome</h5>
+    <a class="btn red darken-4" asp-action="ExportarPDF" asp-controller="Curriculo" asp-route-id="@Model.Id">Importar PDF</a>
+</div>
 
-<h3>Currículo @Model.Nome</h3>
 
 <div>
     <ul class="collection with-header">

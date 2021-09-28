@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Rotativa.AspNetCore;
 using SistemaCurriculos.Models;
+using SistemaCurriculos.Models.ViewModels;
 using SistemaCurriculos.Services;
 using System;
 using System.Collections.Generic;
@@ -12,10 +14,20 @@ namespace Sistemacurriculos.Controllers
     public class CurriculoController : Controller
     {
         private readonly CurriculoService _curriculoService;
+        private readonly ObjetivoService _objetivoService;
+        private readonly FormacaoAcademicaService _formacaoAcademicaService;
+        private readonly ExperienciaProfissionalService _experienciaProfissionalService;
+        private readonly IdiomaService _idiomaService;
 
-        public CurriculoController(CurriculoService curriculoService)
+        public Curriculo CurriculoViewModel { get; private set; }
+
+        public CurriculoController(CurriculoService curriculoService, ObjetivoService objetivoService, FormacaoAcademicaService formacaoAcademicaService, ExperienciaProfissionalService experienciaProfissionalService, IdiomaService idiomaService)
         {
             _curriculoService = curriculoService;
+            _objetivoService = objetivoService;
+            _formacaoAcademicaService = formacaoAcademicaService;
+            _experienciaProfissionalService = experienciaProfissionalService;
+            _idiomaService = idiomaService;
         }
 
         [HttpGet]
@@ -138,6 +150,26 @@ namespace Sistemacurriculos.Controllers
             }
 
             return Json("Currículo excluído com sucesso.");
+        }
+
+        public async Task<IActionResult> ExportarPDF(int? id)
+        {
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            CurriculoViewModel curriculo = new CurriculoViewModel
+            {
+                Curriculo = await _curriculoService.BuscarPorIdAsync(id.Value),
+                Objetivos = await _objetivoService.BuscaObjetivoCurriculoId(id.Value),
+                FormacoesAcademicas = await _formacaoAcademicaService.BuscaFormacaoCurriculoId(id.Value),
+                ExperienciasProfissionais = await _experienciaProfissionalService.BuscaExperienciaCurriculoId(id.Value),
+                Idiomas = await _idiomaService.BuscaIdiomaCurriculoId(id.Value)
+            };
+
+
+            return new ViewAsPdf("ExportarPDF", curriculo) { FileName = "Curriculo.pdf" };
         }
 
     }

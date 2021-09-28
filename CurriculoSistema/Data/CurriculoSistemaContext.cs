@@ -10,6 +10,7 @@ namespace SistemaCurriculos.Data
         public DbSet<Idioma> Idiomas { get; set; }
         public DbSet<TipoCurso> TipoCursos { get; set; }
         public DbSet<FormacaoAcademica> FormacoesAcademicas { get; set; }
+        public DbSet<ExperienciaProfissional> ExperienciasProfissionais { get; set; }
         public DbSet<Objetivo> Objetivos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<InformacaoLogin> InformacoesLogins { get; set; }

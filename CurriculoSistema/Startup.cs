@@ -54,6 +54,8 @@ namespace CurriculoSistema
             services.AddScoped<TipoCursoService>();
             services.AddScoped<ObjetivoService>();
             services.AddScoped<FormacaoAcademicaService>();
+            services.AddScoped<ExperienciaProfissionalService>();
+            services.AddScoped<IdiomaService>();
         }
 
         private void CookiesAuthentication(AuthenticationOptions obj)
