@@ -53,6 +53,7 @@ namespace CurriculoSistema
             services.AddScoped<InformacaoLoginService>();
             services.AddScoped<TipoCursoService>();
             services.AddScoped<ObjetivoService>();
+            services.AddScoped<FormacaoAcademicaService>();
         }
 
         private void CookiesAuthentication(AuthenticationOptions obj)

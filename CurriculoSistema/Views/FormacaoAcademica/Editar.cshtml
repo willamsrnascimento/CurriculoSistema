@@ -1,0 +1,63 @@
+﻿@model SistemaCurriculos.Models.ViewModels.FormacaoAcademicaViewModel;
+
+<h3>Editar Formação Acadêmica</h3>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Editar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <select asp-for="FormacaoAcademica.TipoCursoId" asp-items="@(new SelectList(Model.TiposCursos, "Id", "Tipo"))" class="browser-default validate"></select>
+                    <span asp-validation-for="FormacaoAcademica.TipoCursoId" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="FormacaoAcademica.Instituicao" id="Instituicao" class="validate" />
+                    <label for="FormacaoAcademica.Instituicao">Instituição</label>
+                    <span asp-validation-for="FormacaoAcademica.Instituicao" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="FormacaoAcademica.AnoInicio" id="AnoInicio" class="validate" />
+                    <label for="FormacaoAcademica.AnoInicio">Ano do Início</label>
+                    <span asp-validation-for="FormacaoAcademica.AnoInicio" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="FormacaoAcademica.AnoFim" id="AnoFim" class="validate" />
+                    <label for="FormacaoAcademica.AnoFim">Ano Fim</label>
+                    <span asp-validation-for="FormacaoAcademica.AnoFim" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input asp-for="FormacaoAcademica.NomeCurso" id="NomeCurso" class="validate" />
+                    <label for="FormacaoAcademica.NomeCurso">Nome do Curso</label>
+                    <span asp-validation-for="FormacaoAcademica.NomeCurso" class="red-text darken-3"></span>
+                </div>
+            </div>
+
+            <input type="hidden" asp-for="@Model.FormacaoAcademica.Id" />
+            <input type="hidden" asp-for="@Model.FormacaoAcademica.CurriculoId" />
+
+            <div class="row">
+                <input type="submit" value="Editar" class="btn btn-small green darken-1" /> &nbsp;
+                <a asp-action="Detalhe" asp-controller="Curriculo" asp-route-id="@Model.FormacaoAcademica.CurriculoId">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

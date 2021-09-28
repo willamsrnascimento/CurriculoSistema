@@ -11,14 +11,41 @@
         </li>
         @await Component.InvokeAsync("Objetivo", Model.Id)
     </ul>
+
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5>
+                Formações Acadêmicas <a asp-action="Criar" asp-controller="FormacaoAcademica" asp-route-id="@Model.Id" class="btn-floating btn-small blue darken-4"><i class="material-icons">add</i></a>
+            </h5>
+        </li>
+        @await Component.InvokeAsync("FormacaoAcademica", Model.Id)
+    </ul>
+
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5>
+                Experiências Profissionais <a asp-action="Criar" asp-controller="ExperienciaProfissional" asp-route-id="@Model.Id" class="btn-floating btn-small blue darken-4"><i class="material-icons">add</i></a>
+            </h5>
+        </li>
+        @await Component.InvokeAsync("ExperienciaProfissional", Model.Id)
+    </ul>
+
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <h5>
+                Idiomas <a asp-action="Criar" asp-controller="Idioma" asp-route-id="@Model.Id" class="btn-floating btn-small blue darken-4"><i class="material-icons">add</i></a>
+            </h5>
+        </li>
+        @await Component.InvokeAsync("Idioma", Model.Id)
+    </ul>
 </div>
 
 
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-        <h4>Exclusão de Objetivo</h4>
-        <p>Deseja excluir este objetivo?</p>
+        <h4>Exclusão de Dados</h4>
+        <p>Deseja excluir este dado?</p>
     </div>
     <div class="modal-footer">
         <a class="modal-close green accent-4 btn">Não</a>
@@ -32,7 +59,7 @@
             $(".modal").modal();
         });
 
-        function excluirObjetivoModal(id, objeto) {
+        function excluirDadosModal(id, objeto) {
             $("#modal1").modal("open");
 
             $(".btnConfirmar").on("click", function () {
@@ -41,7 +68,7 @@
                     url: "/" + objeto + "/Excluir",
                     data: { id: id },
                     success: function () {
-                        alert(objeto + " excluído com sucesso!");
+                        alert("Dado excluído com sucesso!");
                         location.reload();
                     }
                 });
